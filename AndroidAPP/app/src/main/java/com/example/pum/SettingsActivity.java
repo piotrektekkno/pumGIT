@@ -1,4 +1,4 @@
-package com.example.pawch;
+package com.example.pum;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.pawch.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

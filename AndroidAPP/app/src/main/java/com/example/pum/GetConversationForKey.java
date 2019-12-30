@@ -1,4 +1,4 @@
-package com.example.pawch;
+package com.example.pum;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -16,37 +16,58 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
+public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
 
     String data = "";
     String singleParsed = "";
+    String dataParsed = "";
     String idxKey;
     Activity actv;
-    String user;
-    GetNewKeyFromServer(String idxKey, Activity actv, String user){
+
+
+
+
+    GetConversationForKey(String idxKey, Activity actv, String user){
         this.idxKey = idxKey;
         this.actv = actv;
-        this.user = user;
+
     }
 
 
     @Override
     protected Void doInBackground(Void... voids) {
         try {
-            URL url = new URL("http://46.41.139.170:3018/newKey?who=" + user);
+            MainActivity.convRows =0;
+            URL url = new URL("http://46.41.139.170:3018/getConv?keyConv=" + idxKey);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
             InputStream inputSream = httpUrlConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputSream));
             String line ="";
+            String tmpUser;
+            String tmpConv;
+            String tmpTime;
+
             while(line != null){
                 line = bufferedReader.readLine();
                 data = data + line;
             }
             JSONArray JA = new JSONArray(data);
             for(int i = 0; i <JA.length(); i++){
+                if(i > 30){
+                    break; // ostatnie 30 wiqdomosci
+                }
                 JSONObject JO = (JSONObject) JA.get(i);
-                singleParsed = (String) JO.get("newKey");
 
+                tmpUser = (String) JO.get("CREATEDBY");
+                tmpConv = (String) JO.get("CONTEXT");
+                tmpTime = (String) JO.get("CREATETS");
+
+                tmpTime = tmpTime.replace("T", " ").replace(".000Z", "");
+                singleParsed = (String) JO.get("CONTEXT")  + " " + (String) JO.get("CREATEDBY") + " " + (String) JO.get("CREATETS");
+
+                ConvClass tmpCnvObj = new ConvClass(tmpUser,tmpConv,tmpTime);
+                MainActivity.convObjArray[i] = tmpCnvObj;
+                MainActivity.convRows++;
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -61,14 +82,17 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        if(this.singleParsed.length() == 10) {
-            SettingsActivity.tmpGetyKey.setText(this.singleParsed);
-            SettingsActivity.manageStorageData.setKeyVal(this.idxKey, this.singleParsed);
 
-        } else {
-            Toast.makeText(actv, "Problem z wygenerowaniem klucza",
+        Toast.makeText(actv, "Odwieżanie \n pobrano wpisów: " + MainActivity.convRows,
+                Toast.LENGTH_LONG).show();
+        MainActivity.SetConvTxt((byte) 0);
+
+        if(MainActivity.convRows == 0) {
+            Toast.makeText(actv, "Nie można pobrać rozmowy dla klucza: " + idxKey,
                     Toast.LENGTH_LONG).show();
         }
 
     }
+
+
 }
