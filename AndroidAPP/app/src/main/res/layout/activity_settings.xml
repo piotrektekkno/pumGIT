@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <Button
+        android:id="@+id/btnSetKey4"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="92dp"
+        android:onClick="ManageButtons"
+        android:text="Użyj"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView4" />
+
+    <Button
+        android:id="@+id/btnRemoveKey1"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:onClick="ManageButtons"
+        android:text="Usuń"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView1" />
+
+    <Button
+        android:id="@+id/btnSetKey0"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="88dp"
+        android:onClick="ManageButtons"
+        android:text="Użyj"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="236dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="212dp"
+        android:text="Lista kluczy:"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonGetNewKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="508dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="ManageButtons"
+        android:text="Utwórz nowy klucz"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextKey"
+        android:layout_width="290dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:maxLength="10"
+        android:textSize="30sp"
+        android:imeOptions="actionGo"
+        android:imeActionId="666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textKeyView4"
+        android:layout_width="167dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="220dp"
+        android:text="Pusty"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textKeyView3"
+        android:layout_width="167dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="164dp"
+        android:text="Pusty"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textKeyView2"
+        android:layout_width="167dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="112dp"
+        android:text="Pusty"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textKeyView1"
+        android:layout_width="167dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="Pusty"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textKeyView0"
+        android:layout_width="167dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:clickable="false"
+        android:linksClickable="false"
+        android:text="Pusty"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="260dp"
+        android:text="Wpisz klucz:"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="384dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/app_name"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/btnRemoveKey0"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:onClick="ManageButtons"
+        android:text="Usuń"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView0" />
+
+    <Button
+        android:id="@+id/btnRemoveKey4"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:onClick="ManageButtons"
+        android:text="Usuń"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView4" />
+
+    <Button
+        android:id="@+id/btnRemoveKey3"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:onClick="ManageButtons"
+        android:text="Usuń"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView3" />
+
+    <Button
+        android:id="@+id/btnSetKey3"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="88dp"
+        android:onClick="ManageButtons"
+        android:text="Użyj"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView3" />
+
+    <Button
+        android:id="@+id/btnSetKey1"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="88dp"
+        android:onClick="ManageButtons"
+        android:text="Użyj"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView1" />
+
+    <Button
+        android:id="@+id/btnSetKey2"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="88dp"
+        android:onClick="ManageButtons"
+        android:text="Użyj"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView2" />
+
+    <Button
+        android:id="@+id/btnRemoveKey2"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:onClick="ManageButtons"
+        android:text="Usuń"
+        app:layout_constraintStart_toEndOf="@+id/textKeyView0"
+        app:layout_constraintTop_toTopOf="@+id/textKeyView2" />
+
+</android.support.constraint.ConstraintLayout>
