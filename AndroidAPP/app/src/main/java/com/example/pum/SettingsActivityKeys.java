@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.pawch.R;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivityKeys extends AppCompatActivity {
 
     public static TextView tmpGetyKey;
     TextView userNameTxt;
@@ -29,8 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        manageStorageData = new ManageStorageData(SettingsActivity.this);
+        setContentView(R.layout.activity__key_settings);
+        manageStorageData = new ManageStorageData(SettingsActivityKeys.this);
 
         userNameTxt = (TextView) findViewById(R.id.txtUserName);
 
@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
         keyVal = edtTxt.getText().toString();
         if(keyVal.length() != 10) {
             //Perform your Actions here.
-            Toast.makeText(SettingsActivity.this, "Klucz powinien zawierać 10 znaków",
+            Toast.makeText(SettingsActivityKeys.this, "Klucz powinien zawierać 10 znaków",
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -74,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
         freeSlot = freeSlots();
 
         if(freeSlot.equals("-1")){
-            Toast.makeText(SettingsActivity.this, "Brak pustego miejsca dla nowego klucza",
+            Toast.makeText(SettingsActivityKeys.this, "Brak pustego miejsca dla nowego klucza",
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -167,11 +167,11 @@ public class SettingsActivity extends AppCompatActivity {
              freeSlot = freeSlots();
 
             if(freeSlot.equals("-1")){
-                Toast.makeText(SettingsActivity.this, "Brak pustego miejsca dla nowego klucza",
+                Toast.makeText(SettingsActivityKeys.this, "Brak pustego miejsca dla nowego klucza",
                         Toast.LENGTH_LONG).show();
                 return;
             } else {
-                GetNewKeyFromServer process = new GetNewKeyFromServer(freeSlot, SettingsActivity.this, userName);
+                GetNewKeyFromServer process = new GetNewKeyFromServer(freeSlot, SettingsActivityKeys.this, userName);
                 process.execute();
             }
         }

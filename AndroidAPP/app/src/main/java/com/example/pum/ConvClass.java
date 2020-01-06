@@ -1,10 +1,12 @@
 package com.example.pum;
 
 public class ConvClass {
-    String user, convtxt, dateTime;
+
+    private String user, convTxt, dateTime;
+
     ConvClass(String user, String convtxt, String dateTime ){
         this.user = user;
-        this.convtxt = convtxt;
+        this.convTxt = convtxt;
         this.dateTime = dateTime;
     }
     String getTime(){
@@ -12,7 +14,7 @@ public class ConvClass {
     }
 
     String getConvTxt(){
-        return this.convtxt;
+        return this.convTxt;
     }
 
     String getConvUser(){

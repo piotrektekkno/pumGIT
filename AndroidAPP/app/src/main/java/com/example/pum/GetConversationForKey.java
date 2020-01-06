@@ -1,7 +1,6 @@
 package com.example.pum;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -20,17 +19,15 @@ import java.net.URL;
 public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
 
     String data = "";
-    String singleParsed = "";
-    String dataParsed = "";
+
     String idxKey;
     Activity actv;
     String urlPath = new ConnectionParam().getConForKeyPath();
-    Context appCtx;
+
 
     GetConversationForKey(String idxKey, Activity actv, String user){
         this.idxKey = idxKey;
         this.actv = actv;
-        appCtx = actv.getApplicationContext();
     }
 
     @Override
@@ -53,7 +50,7 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
             JSONArray JA = new JSONArray(data);
             for(int i = 0; i <JA.length(); i++){
                 if(i > 30){
-                    break; // ostatnie 30 wiqdomosci
+                    break; // ostatnie 30 wiqdomosci dla DB jest TOP 30
                 }
                 JSONObject JO = (JSONObject) JA.get(i);
 
@@ -62,9 +59,8 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
                 tmpTime = (String) JO.get("CREATETS");
 
                 tmpTime = tmpTime.replace("T", " ").replace(".000Z", "");
-                singleParsed = (String) JO.get("CONTEXT")  + " " + (String) JO.get("CREATEDBY") + " " + (String) JO.get("CREATETS");
 
-                ConvClass tmpCnvObj = new ConvClass(tmpUser,tmpConv,tmpTime);
+                ConvClass tmpCnvObj = new ConvClass(tmpUser, tmpConv, tmpTime);
                 MainActivity.convObjArray[i] = tmpCnvObj;
                 MainActivity.convRows++;
             }
@@ -85,9 +81,6 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
         Toast.makeText(actv, "Odwieżanie \n pobrano wpisów: " + MainActivity.convRows,
                 Toast.LENGTH_LONG).show();
         MainActivity.SetConvTxt((byte) 0);
-
-        NotifyNewMessage nm = new NotifyNewMessage(appCtx);
-        nm.PlayRingtone();
 
         if(MainActivity.convRows == 0) {
             Toast.makeText(actv, "Nie można pobrać rozmowy dla klucza: " + idxKey,

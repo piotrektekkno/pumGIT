@@ -132,12 +132,11 @@
 
     <Button
         android:id="@+id/btnSettings"
-        android:layout_width="167dp"
+        android:layout_width="107dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:onClick="ManageButtons"
-        android:text="Ustawienia"
+        android:text="Klucze"
         app:layout_constraintStart_toEndOf="@+id/btnRefresh"
         app:layout_constraintTop_toBottomOf="@+id/writtenText" />
 
@@ -153,5 +152,15 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnResSettings"
+        android:layout_width="113dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="59dp"
+        android:onClick="ManageButtons"
+        android:text="Ustawienia"
+        app:layout_constraintStart_toEndOf="@+id/btnSettings"
+        app:layout_constraintTop_toTopOf="@+id/btnSend" />
 
 </android.support.constraint.ConstraintLayout>

@@ -29,9 +29,7 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
         this.idxKey = idxKey;
         this.actv = actv;
         this.user = user;
-
     }
-
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -65,8 +63,8 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         if(this.singleParsed.length() == 10) {
-            SettingsActivity.tmpGetyKey.setText(this.singleParsed);
-            SettingsActivity.manageStorageData.setKeyVal(this.idxKey, this.singleParsed);
+            SettingsActivityKeys.tmpGetyKey.setText(this.singleParsed);
+            SettingsActivityKeys.manageStorageData.setKeyVal(this.idxKey, this.singleParsed);
 
         } else {
             Toast.makeText(actv, "Problem z wygenerowaniem klucza",

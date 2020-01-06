@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private byte rowFactor = 0;
     ManageStorageData manageStorageData;
     byte refresData = 0;
-    byte refresBySeconds = 120;
+    byte refresBySeconds = 15;
     Timer timer = new Timer();
+
+    NotifyNewMessage playDefSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         editTextKey = (EditText) findViewById(R.id.writtenText);
 
+        playDefSound = new NotifyNewMessage(getApplicationContext());
+
         getConvAndRefresh();
 
 
@@ -62,14 +66,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class UpdateTimeTask extends TimerTask {
-
+        private String lastTime;
+        String time ="";
+        String user ="";
         public void run()
         {
-           // MainActivity.setTitle("your text");
             refresData--;
             if(refresData <= 0){
                 getConvAndRefresh();
                 refresData = refresBySeconds;
+                //New message ?
+
+                int len = convObjArray.length;
+                if(len > 1) {
+                    user = convObjArray[0].getConvUser();
+                    time = convObjArray[0].getTime();
+                }
+                if(!user.equals(actUser) && !time.equals(lastTime)){
+                    playDefSound.PlayRingtone();
+                    lastTime = time;
+                }
+
             }
 
         }
@@ -111,16 +128,11 @@ public class MainActivity extends AppCompatActivity {
         rowFactor = 0;
     }
 
-    public void testdata(){
-        row0Conv.setText("lentest " + convObjArray[2].getTime() );
-    }
-
     void getConvAndRefresh(){
         refreshDetailUserKey();
         refresData = refresBySeconds;
         GetConversationForKey  process = new GetConversationForKey(actUserKey, MainActivity.this, actUser);
         process.execute();
-        
     }
 
 
@@ -135,7 +147,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(btnId ==  R.id.btnSettings) {
 
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, SettingsActivityKeys.class));
+        }
+
+        if(btnId ==  R.id.btnResSettings) {
+
+            //startActivity(new Intent(this, SettingsActivityMain.class));
         }
 
         if(btnId ==  R.id.btnSend) {
