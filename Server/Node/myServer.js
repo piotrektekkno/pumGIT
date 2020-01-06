@@ -52,37 +52,22 @@ app.get("/newKey", (req, res) =>{
 	if(rowsExists == '0'){
 		con.query("INSERT INTO MAINCONV (CONVID, CREATEDBY) VALUES ('"  + genRandId + "', '" + who + "')", 
 		function (err, rows, fields) {
-		if (err) throw err;
-				
+			if (err) throw err;	
 		});
 		stat = 'OK';
 		key = genRandId;
 	}
+	msg = who + ' utworzyl nowy klucz: ' + key +  ' Witamy !!! :)';
+	con.query("INSERT INTO CONVERSATION (CONVID, CREATEDBY, CONTEXT) VALUES ('"  + key + "', '" + who + "','" + msg + "')", 
+		function (err, rows, fields) {
+			if (err) throw err;
+		}
+	);
+
 	res.send([{newKey:key, who, status:stat}]);
 	console.log('GET newKey');
 });
 
-
-app.get("/addMesageGet", (req, res) =>{
-	var who = (req.query.who).substr(0,60);
-	var conKey = req.query.keyconv;
-	var msg = req.query.msg;
-	var stat = 'OK';
-	con.query("SELECT Count(1) EXISTSID FROM MAINCONV WHERE CONVID = '" + conKey + "'", function (err, rows, fields) {
-		if (err) throw err;
-		if(rows[0].EXISTSID == '1'){
-			console.log(rows[0].EXISTSID + ': rowsExists 1 - yes , 0 - No ');
-			
-			con.query("INSERT INTO CONVERSATION (CONVID, CREATEDBY, CONTEXT) " +
-					  " VALUES ('"  + conKey + "', '" + who + "','" + msg + "')", 
-					  function (err, rows, fields) {
-								if (err) throw err;
-				});
-		}
-	});
-	console.log('GET addMesageGet');
-	res.send([{status:stat}]);
-});
 
 app.post('/addMesage', function(req, res) {
 	
@@ -97,11 +82,11 @@ app.post('/addMesage', function(req, res) {
 		if(rows[0].EXISTSID == '1'){
 			console.log(rows[0].EXISTSID + ': rowsExists 1 - yes , 0 - No ');
 			
-			con.query("INSERT INTO CONVERSATION (CONVID, CREATEDBY, CONTEXT) " +
-					  " VALUES ('"  + conKey + "', '" + who + "','" + msg + "')", 
-					  function (err, rows, fields) {
-								if (err) throw err;
-				});
+			con.query("INSERT INTO CONVERSATION (CONVID, CREATEDBY, CONTEXT) VALUES ('"  + conKey + "', '" + who + "','" + msg + "')", 
+				function (err, rows, fields) {
+					if (err) throw err;
+				}
+			);
 		}
 	});
 	console.log('POST addMesage');

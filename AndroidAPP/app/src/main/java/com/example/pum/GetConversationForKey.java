@@ -1,6 +1,7 @@
 package com.example.pum;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -24,11 +25,12 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
     String idxKey;
     Activity actv;
     String urlPath = new ConnectionParam().getConForKeyPath();
+    Context appCtx;
 
     GetConversationForKey(String idxKey, Activity actv, String user){
         this.idxKey = idxKey;
         this.actv = actv;
-
+        appCtx = actv.getApplicationContext();
     }
 
     @Override
@@ -83,6 +85,9 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
         Toast.makeText(actv, "Odwieżanie \n pobrano wpisów: " + MainActivity.convRows,
                 Toast.LENGTH_LONG).show();
         MainActivity.SetConvTxt((byte) 0);
+
+        NotifyNewMessage nm = new NotifyNewMessage(appCtx);
+        nm.PlayRingtone();
 
         if(MainActivity.convRows == 0) {
             Toast.makeText(actv, "Nie można pobrać rozmowy dla klucza: " + idxKey,

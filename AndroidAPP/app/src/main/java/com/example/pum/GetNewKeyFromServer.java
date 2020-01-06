@@ -29,6 +29,7 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
         this.idxKey = idxKey;
         this.actv = actv;
         this.user = user;
+
     }
 
 
