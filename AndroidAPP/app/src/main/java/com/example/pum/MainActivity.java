@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
         refresData = refresBySeconds;
         GetConversationForKey  process = new GetConversationForKey(actUserKey, MainActivity.this, actUser);
         process.execute();
-
-
+        
     }
 
 
@@ -132,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         //Std version
         if(btnId ==  R.id.btnRefresh) {
             getConvAndRefresh();
-
         }
 
         if(btnId ==  R.id.btnSettings) {

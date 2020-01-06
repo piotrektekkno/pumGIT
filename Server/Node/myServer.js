@@ -57,7 +57,7 @@ app.get("/newKey", (req, res) =>{
 		stat = 'OK';
 		key = genRandId;
 	}
-	msg = who + ' utworzyl nowy klucz: ' + key +  ' Witamy !!! :)';
+	msg = who + ' utworzył nowy klucz: ' + key +  ' Witamy !!! :)';
 	con.query("INSERT INTO CONVERSATION (CONVID, CREATEDBY, CONTEXT) VALUES ('"  + key + "', '" + who + "','" + msg + "')", 
 		function (err, rows, fields) {
 			if (err) throw err;
