@@ -132,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
         //Std version
         if(btnId ==  R.id.btnRefresh) {
             getConvAndRefresh();
+            NotifyNewMessage nm = new NotifyNewMessage(getApplicationContext());
+            nm.PlayRingtone();
         }
 
         if(btnId ==  R.id.btnSettings) {

@@ -30,6 +30,7 @@ public class SendMessageByPost extends AsyncTask<Void,Void,Void> {
     Activity actv;
     String user;
     String msg;
+    String sendPath = new ConnectionParam().getAddMessagePath();
 
     SendMessageByPost(String idxKey, Activity actv, String user, String  msg){
         this.idxKey = idxKey;
@@ -41,7 +42,7 @@ public class SendMessageByPost extends AsyncTask<Void,Void,Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        String urlString = "http://46.41.139.170:3018/addMesage";
+        String urlString = sendPath;
         URL url = null;
         InputStream stream = null;
         HttpURLConnection urlConnection = null;
