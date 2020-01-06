@@ -10,4 +10,14 @@ public class ConnectionParam {
         String admMsg = "/addMesage";
         return pHttp + ip + port + admMsg;
     }
+
+    String getConForKeyPath(){
+        String admMsg = "/getConv?keyConv=";
+        return pHttp + ip + port + admMsg;
+    }
+
+    String geNewKeyFromServerPath(){
+        String admMsg = "/newKey?who=";
+        return pHttp + ip + port + admMsg;
+    }
 }

@@ -23,6 +23,8 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
     String idxKey;
     Activity actv;
     String user;
+    String urlPath = new ConnectionParam().geNewKeyFromServerPath();
+
     GetNewKeyFromServer(String idxKey, Activity actv, String user){
         this.idxKey = idxKey;
         this.actv = actv;
@@ -33,7 +35,7 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
-            URL url = new URL("http://46.41.139.170:3018/newKey?who=" + user);
+            URL url = new URL(urlPath + user);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
             InputStream inputSream = httpUrlConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputSream));

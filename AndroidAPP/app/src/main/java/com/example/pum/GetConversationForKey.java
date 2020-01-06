@@ -23,9 +23,7 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
     String dataParsed = "";
     String idxKey;
     Activity actv;
-
-
-
+    String urlPath = new ConnectionParam().getConForKeyPath();
 
     GetConversationForKey(String idxKey, Activity actv, String user){
         this.idxKey = idxKey;
@@ -33,12 +31,11 @@ public class GetConversationForKey extends AsyncTask<Void,Void,Void> {
 
     }
 
-
     @Override
     protected Void doInBackground(Void... voids) {
         try {
             MainActivity.convRows =0;
-            URL url = new URL("http://46.41.139.170:3018/getConv?keyConv=" + idxKey);
+            URL url = new URL(urlPath + idxKey);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
             InputStream inputSream = httpUrlConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputSream));

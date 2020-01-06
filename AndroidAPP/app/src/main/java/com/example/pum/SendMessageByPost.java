@@ -71,8 +71,6 @@ public class SendMessageByPost extends AsyncTask<Void,Void,Void> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"), 8);
             res  = reader.readLine();
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
