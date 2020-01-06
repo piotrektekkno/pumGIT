@@ -12,8 +12,12 @@ public class ManageStorageData {
 
 
     public ManageStorageData(Activity myActivity) {
+
         sharedPreferences = myActivity.getSharedPreferences("ComunicatorSettings", 0);
         String userName = sharedPreferences.getString("UserName", "NOTSET");
+        String playSound = sharedPreferences.getString("SoundMessage", "NOTSET");
+        String vibMessage = sharedPreferences.getString("VibMessage", "NOTSET");
+
         if(userName.equals("NOTSET")){
             Date dt = new Date();
 
@@ -29,6 +33,18 @@ public class ManageStorageData {
             
         } else {
             this.userName = userName;
+        }
+
+        if(playSound.equals("NOTSET")) {
+            SharedPreferences.Editor spEditor = sharedPreferences.edit();
+            spEditor.putString("SoundMessage", "Y");
+            spEditor.commit();
+        }
+
+        if(vibMessage.equals("NOTSET")) {
+            SharedPreferences.Editor spEditor = sharedPreferences.edit();
+            spEditor.putString("VibMessage", "Y");
+            spEditor.commit();
         }
     }
 
@@ -64,4 +80,35 @@ public class ManageStorageData {
         spEditor.putString("ActualUsedKey", keyVal);
         spEditor.commit();
     }
+
+    boolean getSoundSetting(){
+        String str;
+        boolean b = false;
+        str = sharedPreferences.getString("SoundMessage", "N");
+        if(str.equals("Y"))
+            b = true;
+        return b;
+    }
+
+    boolean getVibSetting(){
+        String str;
+        boolean b = false;
+        str = sharedPreferences.getString("VibMessage", "N");
+        if(str.equals("Y"))
+            b = true;
+        return b;
+    }
+
+    void setSoundSetting(String val) {
+        SharedPreferences.Editor spEditor = sharedPreferences.edit();
+        spEditor.putString("SoundMessage", val);
+        spEditor.commit();
+    }
+
+    void setVibSetting(String val) {
+        SharedPreferences.Editor spEditor = sharedPreferences.edit();
+        spEditor.putString("VibMessage", val);
+        spEditor.commit();
+    }
+
 }

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         editTextKey = (EditText) findViewById(R.id.writtenText);
 
-        playDefSound = new NotifyNewMessage(getApplicationContext());
+        playDefSound = new NotifyNewMessage(getApplicationContext(), MainActivity.this);
 
         getConvAndRefresh();
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     time = convObjArray[0].getTime();
                 }
                 if(!user.equals(actUser) && !time.equals(lastTime)){
-                    playDefSound.PlayRingtone();
+                    playDefSound.runNotify();
                     lastTime = time;
                 }
 
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(btnId ==  R.id.btnResSettings) {
 
-            //startActivity(new Intent(this, SettingsActivityMain.class));
+            startActivity(new Intent(this, SettingsMainActivity.class));
         }
 
         if(btnId ==  R.id.btnSend) {

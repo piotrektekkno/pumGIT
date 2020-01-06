@@ -65,7 +65,6 @@ public class GetNewKeyFromServer extends AsyncTask<Void,Void,Void> {
         if(this.singleParsed.length() == 10) {
             SettingsActivityKeys.tmpGetyKey.setText(this.singleParsed);
             SettingsActivityKeys.manageStorageData.setKeyVal(this.idxKey, this.singleParsed);
-
         } else {
             Toast.makeText(actv, "Problem z wygenerowaniem klucza",
                     Toast.LENGTH_LONG).show();

@@ -25,6 +25,7 @@ public class SettingsActivityKeys extends AppCompatActivity {
     EditText editTextKey;
 
     public static  ManageStorageData manageStorageData;
+    //ManageStorageData manageStorageData;
     String userName = "NA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
