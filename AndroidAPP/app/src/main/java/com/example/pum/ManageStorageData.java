@@ -17,6 +17,7 @@ public class ManageStorageData {
         String userName = sharedPreferences.getString("UserName", "NOTSET");
         String playSound = sharedPreferences.getString("SoundMessage", "NOTSET");
         String vibMessage = sharedPreferences.getString("VibMessage", "NOTSET");
+        int refreshSeconds = sharedPreferences.getInt("RefreshSeconds", 0);
 
         if(userName.equals("NOTSET")){
             Date dt = new Date();
@@ -44,6 +45,12 @@ public class ManageStorageData {
         if(vibMessage.equals("NOTSET")) {
             SharedPreferences.Editor spEditor = sharedPreferences.edit();
             spEditor.putString("VibMessage", "Y");
+            spEditor.commit();
+        }
+
+        if(refreshSeconds == 0 ) {
+            SharedPreferences.Editor spEditor = sharedPreferences.edit();
+            spEditor.putInt("RefreshSeconds", 60);
             spEditor.commit();
         }
     }
@@ -99,6 +106,12 @@ public class ManageStorageData {
         return b;
     }
 
+    int getRefreshTime(){
+        int val;
+        val = sharedPreferences.getInt("RefreshSeconds", 60);
+        return val;
+    }
+
     void setSoundSetting(String val) {
         SharedPreferences.Editor spEditor = sharedPreferences.edit();
         spEditor.putString("SoundMessage", val);
@@ -108,6 +121,12 @@ public class ManageStorageData {
     void setVibSetting(String val) {
         SharedPreferences.Editor spEditor = sharedPreferences.edit();
         spEditor.putString("VibMessage", val);
+        spEditor.commit();
+    }
+
+    void setRefreshSetting(int val) {
+        SharedPreferences.Editor spEditor = sharedPreferences.edit();
+        spEditor.putInt("RefreshSeconds", val);
         spEditor.commit();
     }
 

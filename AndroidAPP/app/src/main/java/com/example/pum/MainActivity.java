@@ -24,18 +24,25 @@ public class MainActivity extends AppCompatActivity {
     public static TextView row5Conv;
 
     EditText editTextKey;
-
+    Button buttonRefresh;
     public static ConvClass[] convObjArray = new ConvClass[30];
     public static byte convRows = 0;
+    private byte rowFactor = 0;
     String actUserKey = "";
     String actUser = "";
-    private byte rowFactor = 0;
+    String orignalBtnRefresText = "";
     ManageStorageData manageStorageData;
-    byte refresData = 0;
-    byte refresBySeconds = 15;
+    int refresData = 0;
+    int refresBySeconds = 15;
     Timer timer = new Timer();
 
     NotifyNewMessage playDefSound;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getConvAndRefresh();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
         editTextKey = (EditText) findViewById(R.id.writtenText);
 
+        buttonRefresh = (Button) findViewById(R.id.btnRefresh);
+        orignalBtnRefresText = (String) buttonRefresh.getText();
+
         playDefSound = new NotifyNewMessage(getApplicationContext(), MainActivity.this);
 
         getConvAndRefresh();
-
 
         timer.schedule(new UpdateTimeTask(),1,1000);
 
@@ -69,14 +78,15 @@ public class MainActivity extends AppCompatActivity {
         private String lastTime;
         String time ="";
         String user ="";
+        boolean orignalText = true;
         public void run()
         {
+            buttonRefresh.setText(orignalBtnRefresText + " " + String.valueOf(refresData));
             refresData--;
             if(refresData <= 0){
                 getConvAndRefresh();
                 refresData = refresBySeconds;
                 //New message ?
-
                 int len = convObjArray.length;
                 if(len > 1) {
                     user = convObjArray[0].getConvUser();
@@ -86,9 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     playDefSound.runNotify();
                     lastTime = time;
                 }
-
             }
-
         }
     }
 
@@ -122,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     void refreshDetailUserKey(){
         actUserKey = manageStorageData.getActualUsedKey().replace("NOTSET", "Pusty");
+        refresBySeconds = manageStorageData.getRefreshTime();
         actUser = manageStorageData.getUserName();
         txtDetail.setText("Użytkownik: " + actUser  +
                 "\nKlucz: " + actUserKey );
@@ -166,10 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 refresData = 3;
             }
         }
-
-
     }
-
 
     public void onClikTexView(View view){
         int txtView = ((TextView)view).getId();

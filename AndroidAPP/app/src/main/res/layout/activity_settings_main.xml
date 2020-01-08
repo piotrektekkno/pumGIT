@@ -42,4 +42,44 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:checked="false" />
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="244dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="72dp"
+        android:indeterminate="false"
+        android:indeterminateTint="#2196F3"
+        android:max="300"
+        android:progress="0"
+        android:progressTint="#CDDC39"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vibSwitch" />
+
+    <TextView
+        android:id="@+id/refreshTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Czas odświeznaia (sekundy)"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vibSwitch" />
+
+    <TextView
+        android:id="@+id/textRefreshSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/refreshTxt" />
+
 </android.support.constraint.ConstraintLayout>
