@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         refreshDetailUserKey();
         refresData = refresBySeconds;
         GetConversationForKey  process = new GetConversationForKey(actUserKey, MainActivity.this, actUser);
-
+        process.execute();
     }
 
 
