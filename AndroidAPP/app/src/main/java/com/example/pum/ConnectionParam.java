@@ -4,20 +4,20 @@ public class ConnectionParam {
     private  String ip = "46.41.139.170";
     private  String port = ":3018";
     private  String pHttp = "http://";
-    private String addMessageString = "http://46.41.139.170:3018/addMesage";
+    private  String admMsg ="";
 
     String getAddMessagePath(){
-        String admMsg = "/addMesage";
+        admMsg = "/addMesage";
         return pHttp + ip + port + admMsg;
     }
 
     String getConForKeyPath(){
-        String admMsg = "/getConv?keyConv=";
+        admMsg = "/getConv?keyConv=";
         return pHttp + ip + port + admMsg;
     }
 
     String geNewKeyFromServerPath(){
-        String admMsg = "/newKey?who=";
+        admMsg = "/newKey?who=";
         return pHttp + ip + port + admMsg;
     }
 }

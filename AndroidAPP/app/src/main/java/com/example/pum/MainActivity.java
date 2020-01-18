@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pawch.R;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -87,15 +89,18 @@ public class MainActivity extends AppCompatActivity {
                 getConvAndRefresh();
                 refresData = refresBySeconds;
                 //New message ?
-                int len = convObjArray.length;
-                if(len > 1) {
+
+                if(convObjArray[0] != null) {
                     user = convObjArray[0].getConvUser();
                     time = convObjArray[0].getTime();
                 }
+
                 if(!user.equals(actUser) && !time.equals(lastTime)){
                     playDefSound.runNotify();
                     lastTime = time;
                 }
+
+
             }
         }
     }
@@ -141,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         refreshDetailUserKey();
         refresData = refresBySeconds;
         GetConversationForKey  process = new GetConversationForKey(actUserKey, MainActivity.this, actUser);
-        process.execute();
+
     }
 
 

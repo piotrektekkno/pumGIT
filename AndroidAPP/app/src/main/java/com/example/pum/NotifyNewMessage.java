@@ -9,17 +9,18 @@ import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 
-import static android.content.Context.VIBRATOR_SERVICE;
 
 public class NotifyNewMessage {
     private Context appCtx;
     private ManageStorageData appSettings;
     private Activity actv;
+
     NotifyNewMessage(Context appCtx, Activity activity){
         this.appCtx = appCtx;
         this.actv = activity;
         appSettings = new ManageStorageData(activity);
     }
+
     void runNotify(){
         if(appSettings.getSoundSetting())
             playRingtone();
